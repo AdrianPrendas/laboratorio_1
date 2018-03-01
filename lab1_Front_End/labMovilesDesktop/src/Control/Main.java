@@ -5,7 +5,7 @@
  */
 package Control;
 
-import modelo.ProductoVista;
+import Vista.ProductoVista;
 
 public class Main {
 ProductoVista vista;
@@ -17,8 +17,8 @@ Control control;
     }
     public void iniciar(){
         control = new Control();
-        vista = new ProductoVista("LogIn",control);
+        vista = new ProductoVista();
         
-        login.setVisible(true);
+        
     }
 }

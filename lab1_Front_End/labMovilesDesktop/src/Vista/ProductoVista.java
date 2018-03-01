@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package Vista;
 import Control.Control;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,8 +19,8 @@ public class ProductoVista extends javax.swing.JPanel {
     /**
      * Creates new form ProductoVista
      */
-    public ProductoVista(Control miControl) {
-        this.miControl=miControl;
+    public ProductoVista() {
+        setVisible(true);
         initComponents();
     }
 
@@ -30,11 +34,11 @@ public class ProductoVista extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        selectTipo = new javax.swing.JComboBox<>();
+        buscarNombre = new javax.swing.JButton();
+        buscarTipo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,36 +52,35 @@ public class ProductoVista extends javax.swing.JPanel {
         importado = new javax.swing.JCheckBox();
         tipoProducto2 = new javax.swing.JComboBox<>();
         agregar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setText("Nombre");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        textNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                textNombreActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Tipo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canasta Basica", "Popular", "Suntuario" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        selectTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canasta Basica", "Popular", "Suntuario" }));
+        selectTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                selectTipoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscarNombre.setText("Buscar");
+        buscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarNombreActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buscarTipo.setText("Buscar");
+        buscarTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buscarTipoActionPerformed(evt);
             }
         });
 
@@ -204,8 +207,6 @@ public class ProductoVista extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jLabel8.setText("jLabel8");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,21 +218,19 @@ public class ProductoVista extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                        .addComponent(textNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(buscarNombre)
                         .addGap(60, 60, 60)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(buscarTipo)))
                 .addGap(57, 57, 57))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 137, 137)
-                .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -240,39 +239,34 @@ public class ProductoVista extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(selectTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarNombre)
+                    .addComponent(buscarTipo))
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel8)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void selectTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_selectTipoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_textNombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buscarNombreActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buscarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buscarTipoActionPerformed
 
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
         // TODO add your handling code here:
@@ -298,14 +292,95 @@ public class ProductoVista extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_agregarActionPerformed
 
+    public JButton getAgregar() {
+        return agregar;
+    }
+
+    public void setAgregar(JButton agregar) {
+        this.agregar = agregar;
+    }
+
+    public JButton getBuscarNombre() {
+        return buscarNombre;
+    }
+
+    public void setBuscarNombre(JButton buscarNombre) {
+        this.buscarNombre = buscarNombre;
+    }
+
+    public JButton getBuscarTipo() {
+        return buscarTipo;
+    }
+
+    public void setBuscarTipo(JButton buscarTipo) {
+        this.buscarTipo = buscarTipo;
+    }
+
+    public JTextField getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(JTextField codigo) {
+        this.codigo = codigo;
+    }
+
+    public JCheckBox getImportado() {
+        return importado;
+    }
+
+    public void setImportado(JCheckBox importado) {
+        this.importado = importado;
+    }
+
+    public JTextField getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(JTextField nombre) {
+        this.nombre = nombre;
+    }
+
+    public JTextField getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(JTextField precio) {
+        this.precio = precio;
+    }
+
+    public JComboBox<String> getSelectTipo() {
+        return selectTipo;
+    }
+
+    public void setSelectTipo(JComboBox<String> selectTipo) {
+        this.selectTipo = selectTipo;
+    }
+
+    public JTextField getTextNombre() {
+        return textNombre;
+    }
+
+    public void setTextNombre(JTextField textNombre) {
+        this.textNombre = textNombre;
+    }
+
+    public JComboBox<String> getTipoProducto2() {
+        return tipoProducto2;
+    }
+
+    public void setTipoProducto2(JComboBox<String> tipoProducto2) {
+        this.tipoProducto2 = tipoProducto2;
+    }
+
+   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
+    private javax.swing.JButton buscarNombre;
+    private javax.swing.JButton buscarTipo;
     private javax.swing.JTextField codigo;
     private javax.swing.JCheckBox importado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -313,12 +388,12 @@ public class ProductoVista extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField precio;
+    private javax.swing.JComboBox<String> selectTipo;
+    private javax.swing.JTextField textNombre;
     private javax.swing.JComboBox<String> tipoProducto2;
     // End of variables declaration//GEN-END:variables
 }
