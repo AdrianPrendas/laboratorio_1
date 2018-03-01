@@ -54,7 +54,7 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
             pstmt.setInt(1,p.getCodigo());
             pstmt.setString(2,p.getNombre());
             pstmt.setFloat(3,p.getPrecio());
-            pstmt.setString(4,String.valueOf(p.getImportado()));
+            pstmt.setInt(4,((p.getImportado())?1:0));
             pstmt.setString(5,p.getTipo());
             pstmt.execute();//retorna true o false
         } catch (SQLException e) {
@@ -154,7 +154,7 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
             pstmt.setInt(1,p.getCodigo());
             pstmt.setString(2,p.getNombre());
             pstmt.setFloat(3,p.getPrecio());
-            pstmt.setString(4,String.valueOf(p.getImportado()));
+            pstmt.setInt(4,((p.getImportado())?1:0));
             pstmt.setString(5,p.getTipo());            
             int resultado = pstmt.executeUpdate();
             if (resultado == 0)//si es diferente de 0 es porq si afecto un registro o mas

@@ -28,11 +28,11 @@ public class Test {
     }
     
     public static void main(String[]args){
-        Producto p = new Producto(1, "frijoles", (float) 500.0, true,"Canasta Basica");
+        Producto p = new Producto(10, "weed", (float) 500.0, true,"Canasta Basica");
         //create(p);
-        read(p);
+        //read(p);
         //update(p);
-        //delete(p);
+        delete(p);
         
         
         
