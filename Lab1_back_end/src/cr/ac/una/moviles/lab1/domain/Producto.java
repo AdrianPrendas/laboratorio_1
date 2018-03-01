@@ -8,12 +8,12 @@ public class Producto {
     private int codigo;
     private String nombre;
     private float precio;
-    private Character importado;
-    private int tipo;
+    private boolean importado;
+    private String tipo;
 
     public Producto(){}
     
-    public Producto(int codigo, String nombre, float precio, Character importado, int tipo) {
+    public Producto(int codigo, String nombre, float precio, boolean importado, String tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
@@ -45,38 +45,30 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Character getImportado() {
+    public boolean getImportado() {
         return importado;
     }
 
-    public void setImportado(Character importado) {
+    public void setImportado(boolean importado) {
         this.importado = importado;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    public String type(){
-        switch(this.tipo){
-            case 1: return "Canasta Basica";
-            case 2: return "Popular";
-            case 3: return "Suntuario";
-            default: return "no definido";
-        }
-    }
+  
     
     public String toString(){
         return "{"+
                 "codigo: "+this.codigo+
                 ", nombre: "+this.nombre+
                 ", precio: "+this.precio+
-                ", importado: "+this.importado+
-                ", tipo: "+this.type()+
+                ", importado: "+((this.importado)?"s":"n")+
+                ", tipo: "+this.tipo+
                 "}";
     }
     

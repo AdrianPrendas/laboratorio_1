@@ -28,7 +28,7 @@ public class Test {
     }
     
     public static void main(String[]args){
-        Producto p = new Producto(1, "frijoles", (float) 500.0, new Character('s'),1);
+        Producto p = new Producto(1, "frijoles", (float) 500.0, true,"Canasta Basica");
         //create(p);
         read(p);
         //update(p);

@@ -40,7 +40,6 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
         boolean resp = true;
         try {
             conectar();
-            
         } catch (ClassNotFoundException e) {
             System.out.println("No se ha localizado el driver");
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
             pstmt.setString(2,p.getNombre());
             pstmt.setFloat(3,p.getPrecio());
             pstmt.setString(4,String.valueOf(p.getImportado()));
-            pstmt.setInt(5,p.getTipo());
+            pstmt.setString(5,p.getTipo());
             pstmt.execute();//retorna true o false
         } catch (SQLException e) {
             System.out.println("Llave duplicada");
@@ -69,9 +68,9 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
                     pstmt.close();                                    
                 desconectar();
             } catch (SQLException e) {
+                System.out.println("Estatutos invalidos o nulos");
                 e.printStackTrace();
                 resp=false;
-                System.out.println("Estatutos invalidos o nulos");
             }
         }
         if(resp)
@@ -87,10 +86,15 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
         CallableStatement pstmt=null;  
         try {
             conectar();
-            
+        }catch (ClassNotFoundException e) {
+            System.out.println("No se ha localizado el driver");
+        } catch (SQLException e) {
+            System.out.println("La base de datos no se encuentra disponible");
+        }
+        try{
             if(p1.getNombre().isEmpty()){
                 pstmt = conexion.prepareCall(READ_PRODUCTO_BY_TYPE);            
-                pstmt.setInt(2,p1.getTipo());            
+                pstmt.setString(2,p1.getTipo());            
             }
             else{
                 pstmt = conexion.prepareCall(READ_PRODUCTO_BY_NAME);            
@@ -104,13 +108,13 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
                 p2.setCodigo(rs.getInt("codigo"));
                 p2.setNombre(rs.getString("nombre"));
                 p2.setPrecio(rs.getFloat("precio"));
-                p2.setImportado(rs.getString("importado").charAt(0));
-                p2.setTipo(rs.getInt("tipo"));
+                p2.setImportado(((Integer.parseInt(rs.getString("importado"))==0)?false:true));
+                p2.setTipo(rs.getString("tipo"));
                 coleccion.add(p2);
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
+            System.out.println("Sentencia no valida");
             e.printStackTrace();
         }
         finally {
@@ -123,6 +127,7 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
                 }
                 desconectar();
             } catch (SQLException e) {
+                System.out.println("Estatutos invalidos o nulos");
                e.printStackTrace();
             }
         }
@@ -135,22 +140,29 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
         boolean resp=true;
         try {
             conectar();
-            
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se ha localizado el driver");
+            e.printStackTrace();
+            resp=false;
+        } catch (SQLException e) {
+            System.out.println("La base de datos no se encuentra disponible");
+            e.printStackTrace();
+            resp=false;
+        }
+        try {            
             pstmt = conexion.prepareStatement(UPDATE_PRODUCT);
             pstmt.setInt(1,p.getCodigo());
             pstmt.setString(2,p.getNombre());
             pstmt.setFloat(3,p.getPrecio());
             pstmt.setString(4,String.valueOf(p.getImportado()));
-            pstmt.setInt(5,p.getTipo());            
+            pstmt.setString(5,p.getTipo());            
             int resultado = pstmt.executeUpdate();
             if (resultado == 0)//si es diferente de 0 es porq si afecto un registro o mas
                 resp=false;            
             else
                System.out.println("Modificacion Exitosa");            
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            resp=false;
-        } catch (SQLException e) {
+        }catch (SQLException e) {
+            System.out.println("Sentencia no valida");
             e.printStackTrace();
             resp=false;
         }
@@ -176,14 +188,19 @@ public class ProductoDao extends DAO implements CRUD<Producto> {
         CallableStatement pstmt=null;  
         try {
             conectar();
-            
+        } catch (ClassNotFoundException e) {
+           System.out.println("No se ha localizado el driver");
+           return false;
+        } catch (SQLException e) {
+           System.out.println("La base de datos no se encuentra disponible");
+           return false;
+        }
+        try {
             pstmt = conexion.prepareCall(DELETE_PRODUCT);                        
             pstmt.setInt(1,t.getCodigo());            
             pstmt.execute();
-        } catch (ClassNotFoundException e) {
-           e.printStackTrace();
-           resp=false;
-        } catch (SQLException e) {
+        }catch (SQLException e) {
+            System.out.println("Sdentencia no valida");
            e.printStackTrace();
            resp=false;
         } finally {

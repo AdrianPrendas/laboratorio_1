@@ -5,22 +5,12 @@ package cr.ac.una.moviles.lab1.domain;
  * @author _Adrián_Prendas_
  */
 public class Tipo {
-    private int tipo;
     private String nombre;
     private float porcentaje;
 
-    public Tipo(int tipo, String nombre, float porcentaje) {
-        this.tipo = tipo;
+    public Tipo(String nombre, float porcentaje) {
         this.nombre = nombre;
         this.porcentaje = porcentaje;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 
     public String getNombre() {
