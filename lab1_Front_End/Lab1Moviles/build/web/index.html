@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
+        <link href="estilos/css.css" rel="stylesheet" type="text/css"/>       
+    </head>
+    <body id="pagina" >
+        <div class=" header-top">
+            <h1>Productos <small>sistema para control de productos</small></h1>
+        </div>
+        <div>
+            <center>
+
+                <center>                                               
+                    <b>Nombre:</b><input type="text" name="text"/>
+                    <b><button type="button">Buscar</button></b>                                               
+                    <b>Tipo:</b><select>
+                        <option value="1">Canasta Básica</option>
+                        <option value="2">Popular</option>
+                        <option value="3">Suntuario</option>                            
+                    </select>
+                    <button type="button">Buscar</button>                                                      
+                </center>
+
+            </center>
+            <br>
+            <br>
+            <center>
+                <div id="tabla">
+
+                </div>
+            </center>           
+            <br>
+            <br>
+            <div class="tituloAgregar">
+            <h1>Agregar Productos</h1>
+            </div>
+            <center>
+
+
+                <form  onsubmit="return false;" method="GET">
+                    <table id="g-table" >
+                        <tbody>
+                        <tr>
+                            <th>Código</th>
+                            
+                            <td>
+                                <input type="text">
+                            </td>                            
+                        </tr>
+                        <tr class="espacio">
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr class="espacio">
+                        </tr>
+                        <tr>
+                            <th>Precio</th>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr class="espacio">
+                        </tr>
+                        <tr>
+                            <th>Importado</th>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr class="espacio">
+                        </tr>
+                        <tr>
+                            <th>Tipo</th>
+                            <td>
+                                <select>
+                                    <option value="1">Canasta Básica</option>
+                                    <option value="2">Popular</option>
+                                    <option value="3">Suntuario</option>   
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="espacio">
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="Agregar">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+
+            </center>
+        </div>
+
+    </body>
+</html>

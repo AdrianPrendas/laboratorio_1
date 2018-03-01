@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/02/2018, 05:08:04 PM
+    Author     : esteban
+*/
+.header-top {
+    background-size: cover; 
+    padding-top: 30px;
+    font-family: 'Krona One', sans-serif;
+    font-size: 10px;
+    background-color: #61b7c2;
+}
+
+.tituloAgregar{
+     background-size:  contain; 
+    padding-top: 30px;
+    font-family: 'Krona One', sans-serif;
+    font-size: 10px;
+    background-color: #61b7c2;
+}
+.espacio{
+    height:20px;
+}
+
+#pagina{
+    background-color:#e8e5e8;
+}
+
+#titulos{
+    background-color:#ffbc36;
+    
+}
+#tabla{
+    width:500px;
+    height:100px;
+    background-color:  #red;
+
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: 1px solid #000000;
+
+}
+
+
+
