@@ -10,6 +10,10 @@ public class Producto {
     private float precio;
     private boolean importado;
     private String tipo;
+    private float porcentaje;
+    private float impuesto;
+    private float precioFinal;
+    
 
     public Producto(){}
     
@@ -19,6 +23,17 @@ public class Producto {
         this.precio = precio;
         this.importado = importado;
         this.tipo = tipo;
+    }
+
+    public Producto(int codigo, String nombre, float precio, boolean importado, String tipo, float porcentaje, float impuesto, float precioFinal) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.importado = importado;
+        this.tipo = tipo;
+        this.porcentaje = porcentaje;
+        this.impuesto = impuesto;
+        this.precioFinal = precioFinal;
     }
 
     public int getCodigo() {
@@ -60,7 +75,30 @@ public class Producto {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-  
+
+    public float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+
+    public float getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(float impuesto) {
+        this.impuesto = impuesto;
+    }
+
+    public float getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(float precioFinal) {
+        this.precioFinal = precioFinal;
+    }
     
     public String toString(){
         return "{"+
@@ -69,6 +107,9 @@ public class Producto {
                 ", precio: "+this.precio+
                 ", importado: "+((this.importado)?"s":"n")+
                 ", tipo: "+this.tipo+
+                ", porcentaje: "+this.porcentaje+
+                ", impuesto: "+this.impuesto+
+                ", precio final: "+this.precioFinal+
                 "}";
     }
     

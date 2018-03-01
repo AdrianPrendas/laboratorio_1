@@ -9,8 +9,10 @@ import modelo.ProductoVista;
  *
  * @author esteban
  */
+import cr.ac.una.moviles.lab1.domain.Producto;
 public class Control {
-    public Control(/*objeto ln*/){
+    public Control(Producto nuevoProducto){
+        this.nuevoProducto
         //falta logica de negocio
     }
     
