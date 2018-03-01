@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package labmovilesdesktop;
+package modelo;
+import Control.Control;
 
 /**
  *
@@ -14,7 +15,8 @@ public class ProductoVista extends javax.swing.JPanel {
     /**
      * Creates new form ProductoVista
      */
-    public ProductoVista() {
+    public ProductoVista(Control miControl) {
+        this.miControl=miControl;
         initComponents();
     }
 
