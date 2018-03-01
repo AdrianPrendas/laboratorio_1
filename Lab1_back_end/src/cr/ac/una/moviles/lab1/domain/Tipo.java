@@ -7,6 +7,8 @@ package cr.ac.una.moviles.lab1.domain;
 public class Tipo {
     private String nombre;
     private float porcentaje;
+    
+    public Tipo(){}
 
     public Tipo(String nombre, float porcentaje) {
         this.nombre = nombre;
@@ -27,6 +29,13 @@ public class Tipo {
 
     public void setPorcentaje(float porcentaje) {
         this.porcentaje = porcentaje;
+    }
+    
+    public String toString(){
+        return "{"+
+                "tipo: "+this.nombre+
+                ", porcentaje: "+this.porcentaje+
+                "}";
     }
 
 }

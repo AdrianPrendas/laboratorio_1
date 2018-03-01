@@ -9,14 +9,15 @@ import java.util.LinkedHashMap;
  */
 
 public class BaseBL {
-    private final LinkedHashMap<String, IBaseDAO> daos;
+    private final LinkedHashMap<String, IBaseCRUD> daos;
 
     public BaseBL() {
         daos = new LinkedHashMap();
         daos.put("cr.ac.una.moviles.lab1.domain.Producto", ProductoDao.getInstance());
+        daos.put("cr.ac.una.moviles.lab1.domain.Tipo", TipoDao.getInstance());
     }
 
-    public IBaseDAO getDao(String className) {
+    public IBaseCRUD getDao(String className) {
         return daos.get(className);
     }
 }

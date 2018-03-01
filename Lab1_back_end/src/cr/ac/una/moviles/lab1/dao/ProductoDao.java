@@ -14,7 +14,7 @@ import oracle.jdbc.OracleTypes;
  *
  * @author _Adrián_Prendas_
  */
-public class ProductoDao extends DAO implements IBaseDAO<Producto,Integer> {
+public class ProductoDao extends ABaseDAO implements IBaseCRUD<Producto,Integer> {
     private static ProductoDao uniqueInstance;
     private static final String CREATE_PRODUCT = "{call insertarProducto(?,?,?,?,?)}";
     private static final String READ_PRODUCTO_BY_TYPE = "{?=call buscarProductoTipo(?)}";
@@ -111,6 +111,9 @@ public class ProductoDao extends DAO implements IBaseDAO<Producto,Integer> {
                 p2.setPrecio(rs.getFloat("precio"));
                 p2.setImportado(((Integer.parseInt(rs.getString("importado"))==0)?false:true));
                 p2.setTipo(rs.getString("tipo"));
+                p2.setPorcentaje(Float.parseFloat(rs.getString("porcentaje")));
+                p2.setImpuesto(Float.parseFloat(rs.getString("impuesto")));
+                p2.setPrecioFinal(Float.parseFloat(rs.getString("preciofinal")));
                 coleccion.add(p2);
             }
         }
