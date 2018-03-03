@@ -4,7 +4,7 @@ package cr.ac.una.moviles.lab1.domain;
  *
  * @author _Adrián_Prendas_
  */
-public class Producto {
+public class Producto implements Jsonable{
     private int codigo;
     private String nombre;
     private float precio;

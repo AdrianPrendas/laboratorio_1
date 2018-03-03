@@ -4,7 +4,7 @@ package cr.ac.una.moviles.lab1.domain;
  *
  * @author _Adrián_Prendas_
  */
-public class Tipo {
+public class Tipo implements Jsonable{
     private String nombre;
     private float porcentaje;
     

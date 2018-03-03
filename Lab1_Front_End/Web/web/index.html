@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Productos</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
+	<link rel="stylesheet" href="css/style.css">
+        <script src="js/JsonUtils.js" type="text/javascript"></script>
+        <script src="js/proxy.js" type="text/javascript"></script>
+        <script src="js/Domain.js" type="text/javascript"></script>
+        <script src="js/load.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container-fluid" id="head">
+		<header>
+			<h2>Productos</h2>
+		</header>	
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2"><p>Nombre</p></div>
+			<div class="col-lg-2"><input type="text" id="buscarNombre"></div>
+			<div class="col-lg-2"><button class="" id="btn-buscar-nombre">Buscar</button></div>
+			<div class="col-lg-2"><p>Tipo</p></div>
+			<div class="col-lg-2">
+				<select id="buscarTipo">
+					<option value="Canasta Basica">Canasta Basica</option>
+					<option value="Popular">Popular</option>
+					<option value="Suntuario">Suntuario</option>
+				</select>
+			</div>
+			<div class="col-lg-2"><button class="" id="btn-buscar-tipo">Buscar</button></div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<center>
+			<div class="row">
+
+				<table border="3" style="width:100%;">
+					<thead>
+						<tr class="text-center">
+							<th>codigo</th>
+							<th>nombre</th>
+							<th>importado</th>
+							<th>precio</th>
+							<th>tipo</th>
+							<th>porcentaje</th>
+							<th>impuesto</th>
+							<th>precio final</th>
+						</tr>
+					</thead>
+					<tbody id="tabla">
+                                            <!--Registros de la tabla-->
+					</tbody>
+				</table>
+
+			</div>
+		</center>
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+                            <form onsubmit="return null;" id="form">
+
+				<div class="row">
+					<div class="col-lg-4"><p>Codigo</p></div>
+                                        <div class="col-lg-4"><input type="text" id="codigo" pattern="[0-9]+" required title="solo numeros enteros"></div>
+					<div class="col-lg-4"></div>	
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-4"><p>Nombre</p></div>
+                                        <div class="col-lg-4"><input type="text" id="nombre" required></div>
+					<div class="col-lg-4"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-4"><p>Precio</p></div>
+					<div class="col-lg-4"><input type="text" id="precio" pattern="[0-9]+(.[0-9])?" title="puede ser una cifra con o sin decimales" required></div>
+					<div class="col-lg-4"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-4"><p>Importado</p></div>
+					<div class="col-lg-4"><input type="checkbox" id="importado"></div>
+					<div class="col-lg-4"></div>
+                                </div>
+
+				
+				<div class="row">
+					<div class="col-lg-4"><p>Tipo</p></div>
+					<div class="col-lg-4">
+						<select id="tipoAgregar">
+							<option value="Canasta Basica">Canasta Basica</option>
+							<option value="Popular">Popular</option>
+							<option value="Suntuario">Suntuario</option>
+						</select>
+					</div>
+					<div class="col-lg-4"><input type="submit" id="btn-agregar" value="Agregar"></div>	
+				</div>
+				
+                            </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

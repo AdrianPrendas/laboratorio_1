@@ -15,8 +15,8 @@ public class ProductoBL extends BaseBL implements IBaseBL<Producto,Integer>{
     }
 
     @Override
-    public void create(Producto o) {
-        this.getDao(o.getClass().getName()).create(o);
+    public boolean create(Producto o) {
+        return this.getDao(o.getClass().getName()).create(o);
     }
 
     @Override

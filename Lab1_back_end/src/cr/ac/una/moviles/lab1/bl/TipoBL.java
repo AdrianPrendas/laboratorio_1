@@ -15,7 +15,7 @@ public class TipoBL extends BaseBL implements IBaseBL {
     }
 
     @Override
-    public void create(Object o) {
+    public boolean create(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
