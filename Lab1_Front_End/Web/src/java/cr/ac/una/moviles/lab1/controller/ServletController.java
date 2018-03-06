@@ -47,6 +47,7 @@ public class ServletController extends HttpServlet {
             ProductoBL pbl = new ProductoBL();
             Producto product = new Producto();
             ArrayList<Producto> lista;
+            boolean resp;
 
             String accion = request.getParameter("action");
 System.out.println("accion: " + accion);
@@ -55,10 +56,9 @@ System.out.println("accion: " + accion);
                     json = request.getParameter("product");
                     product = gson.fromJson(json, Producto.class);
 System.out.println(product);
-                    boolean res = pbl.create(product);
-                    json = gson.toJson(((res)?new Exception("Exito"):new Exception("Error llave duplicada")));
+                    resp = pbl.create(product);
+                    json = gson.toJson(((resp)?new Exception("Exito"):new Exception("Error de codigo duplicada")));
                     out.print(json);
-                    
                     break;
                 case "findAll":
                     lista = new ArrayList(pbl.findAll());
@@ -82,6 +82,22 @@ System.out.println(json);
 System.out.println(json);
                         out.print(json);
                     break;
+                    case "update":
+                    json = request.getParameter("product");
+                    product = gson.fromJson(json, Producto.class);
+System.out.println(product);
+                    resp = pbl.update(product);
+                    json = gson.toJson(((resp)?new Exception("Exito"):new Exception("Error al actualizar")));
+                    out.print(json);
+                        break;
+                    case "delete":
+                    json = request.getParameter("id");
+System.out.println("Eliminando id: "+json);
+                    resp = pbl.delete(Integer.parseInt(json));
+                    json = gson.toJson(((resp)?new Exception("Exito"):new Exception("Error al tratar de eliminar el Producto: "+json)));
+                    out.print(json);
+                    break;
+                        
             }
 
         } catch (Exception e) {
