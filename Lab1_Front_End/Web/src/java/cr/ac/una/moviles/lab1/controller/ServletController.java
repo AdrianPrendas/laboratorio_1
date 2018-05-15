@@ -33,9 +33,8 @@ public class ServletController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.setContentType("text/xml");
+            response.setContentType("application/json");//text/html;charset=UTF-8
             RuntimeTypeAdapterFactory<Jsonable> rta = RuntimeTypeAdapterFactory.of(Jsonable.class, "_class")
                     .registerSubtype(Tipo.class, "Tipo")
                     .registerSubtype(Producto.class, "Producto");
@@ -79,6 +78,19 @@ System.out.println(json);
 System.out.println(json);
                         lista = new ArrayList(pbl.findByType(json));
                         json = gson.toJson(lista);
+System.out.println(json);
+                        out.print(json);
+                    break;
+                    case "findById":
+                        json = request.getParameter("id");
+System.out.println(json);
+                        try{
+                            int key = Integer.parseInt(json);
+                            Producto pro = pbl.findByKey(key);
+                            json = gson.toJson(pro);
+                        }catch(Exception e){
+                            json = gson.toJson(new Exception("Error: el pk es un entero"));
+                        }
 System.out.println(json);
                         out.print(json);
                     break;

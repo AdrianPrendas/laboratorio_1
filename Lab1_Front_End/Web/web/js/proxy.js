@@ -48,9 +48,12 @@ Proxy.findByName = function(name, callBack){
             name:name
         }
      }).done(function (result) { 
-        alert(result.detailMessage);    
-        if(result.detailMessage == "Exito")
-            location.reload();
+        if (result instanceof Array){
+            var arr = result.map(JsonUtils.revive);
+            callBack(arr);
+        }
+        else
+            swal('Oops...',result.detailMessage,'error')
     }).fail(function (e, msg, excepn) {
         alert('**** AJAX ERROR ' + msg + ' ****');
     });

@@ -11,7 +11,6 @@ Tipo.prototype ={
 
 };
 
-
 function Producto(codigo, nombre, importado, precio, tipo, porcentaje, impuesto, precioFinal){
     this.Producto(codigo, nombre, importado, precio, tipo, porcentaje, impuesto, precioFinal);
 }

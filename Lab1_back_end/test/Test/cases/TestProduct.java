@@ -27,6 +27,10 @@ public class TestProduct {
         ArrayList l = new ArrayList(pbl.findByName(p.getNombre()));
         l.forEach(p2->System.out.println(p2));        
     }
+    public static void findByKey(Integer key){
+        Producto p = pbl.findByKey(key);
+        System.out.println(p);
+    }
     public static void findByType(Producto p){
         ArrayList l = new ArrayList(pbl.findByType(p.getTipo()));
         l.forEach(p2->System.out.println(p2));        
@@ -53,7 +57,8 @@ public class TestProduct {
         //findByType(p);
         //update(p);
         //delete(10);
-        readAll();
+        //readAll();
+        findByKey(5);
         
         
         

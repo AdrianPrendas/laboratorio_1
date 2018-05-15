@@ -19,6 +19,7 @@ public class ProductoDao extends ABaseDAO implements IBaseCRUD<Producto,Integer>
     private static final String CREATE_PRODUCT = "{call insertarProducto(?,?,?,?,?)}";
     private static final String READ_PRODUCTO_BY_TYPE = "{?=call buscarProductoTipo(?)}";
     private static final String READ_PRODUCTO_BY_NAME = "{?=call buscarProductoNombre(?)}";
+    private static final String READ_PRODUCTO_BY_PK = "{?=call buscarProductoCodigo(?)}";
     private static final String READ_ALL_PRODUCTS = "{?=call listaProductos()}";
     private static final String UPDATE_PRODUCT = "{call modificarProducto(?,?,?,?,?)}";
     private static final String DELETE_PRODUCT = "{call eliminarProducto(?)}";
@@ -93,13 +94,15 @@ public class ProductoDao extends ABaseDAO implements IBaseCRUD<Producto,Integer>
             System.out.println("La base de datos no se encuentra disponible");
         }
         try{
-            if(p1.getNombre().isEmpty()){
-                pstmt = conexion.prepareCall(READ_PRODUCTO_BY_TYPE);            
-                pstmt.setString(2,p1.getTipo());            
-            }
-            else{
+            if(!p1.getNombre().isEmpty()){
                 pstmt = conexion.prepareCall(READ_PRODUCTO_BY_NAME);            
                 pstmt.setString(2,p1.getNombre());            
+            }else if(!p1.getTipo().isEmpty()){
+                pstmt = conexion.prepareCall(READ_PRODUCTO_BY_TYPE);            
+                pstmt.setString(2,p1.getTipo());            
+            }else if(p1.getNombre().isEmpty()&&p1.getTipo().isEmpty()){
+                pstmt = conexion.prepareCall(READ_PRODUCTO_BY_PK);            
+                pstmt.setInt(2,p1.getCodigo());            
             }
             pstmt.registerOutParameter(1, OracleTypes.CURSOR);            
             pstmt.execute();
@@ -136,6 +139,60 @@ public class ProductoDao extends ABaseDAO implements IBaseCRUD<Producto,Integer>
             }
         }
         return coleccion;
+    }
+    
+    public Producto readPk(Integer key) {
+        ResultSet rs = null;
+        ArrayList coleccion = new ArrayList();
+        Producto p2 = null;
+        CallableStatement pstmt=null;  
+        try {
+            conectar();
+        }catch (ClassNotFoundException e) {
+            System.out.println("No se ha localizado el driver");
+        } catch (SQLException e) {
+            System.out.println("La base de datos no se encuentra disponible");
+        }
+        try{
+            
+            pstmt = conexion.prepareCall(READ_PRODUCTO_BY_PK);            
+            pstmt.setInt(2,key);            
+            
+            pstmt.registerOutParameter(1, OracleTypes.CURSOR);            
+            pstmt.execute();
+            rs = (ResultSet)pstmt.getObject(1); 
+            while (rs.next()) {
+                p2 = new Producto();
+                p2.setCodigo(rs.getInt("codigo"));
+                p2.setNombre(rs.getString("nombre"));
+                p2.setPrecio(rs.getFloat("precio"));
+                p2.setImportado(((Integer.parseInt(rs.getString("importado"))==0)?false:true));
+                p2.setTipo(rs.getString("tipo"));
+                p2.setPorcentaje(Float.parseFloat(rs.getString("porcentaje")));
+                p2.setImpuesto(Float.parseFloat(rs.getString("impuesto")));
+                p2.setPrecioFinal(Float.parseFloat(rs.getString("preciofinal")));
+                coleccion.add(p2);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Sentencia no valida");
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                desconectar();
+            } catch (SQLException e) {
+                System.out.println("Estatutos invalidos o nulos");
+               e.printStackTrace();
+            }
+        }
+        return (Producto)coleccion.get(0);
     }
 
     @Override

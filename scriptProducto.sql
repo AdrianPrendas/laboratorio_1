@@ -8,7 +8,7 @@ conn tor/root
 --CREATE TABLESPACE TB_DATOS 
 --datafile 'C:\oraclexe\app\oracle\oradata\XE\TB_DATOS.DBF' 
 --SIZE 1M REUSE AUTOEXTEND ON;
---configuracion del terminal para escriba bien las tablas
+--configuracion del terminal para escriba bien las tablas en Windows
 SET LINESIZE 32000;
 SET PAGESIZE 40000;
 SET LONG 50000;
@@ -170,6 +170,22 @@ end;
 /
 
 select listaTipos from dual;
+
+CREATE OR REPLACE FUNCTION buscarProductoCodigo(codigoIN IN producto.codigo%TYPE)
+RETURN Types.ref_cursor
+AS
+	producto_cursor types.ref_cursor;
+	v_codigo producto.codigo%TYPE;
+BEGIN
+	OPEN producto_cursor FOR
+		select producto.codigo, producto.nombre, producto.precio, producto.importado, producto.tipo, tipo.porcentaje, (producto.precio/100*tipo.porcentaje) as impuesto, (producto.precio+(producto.precio/100*tipo.porcentaje)+(producto.importado*(producto.precio/100*tipo.porcentaje)*0.50)) as preciofinal
+       FROM producto, tipo where producto.tipo=tipo.nombre and producto.codigo = codigoIN;
+RETURN producto_cursor;
+END;
+/
+
+select buscarProductoCodigo(4) from dual;
+
 
 --DROP FUNCTION LISTATIPOS;
 --drop function buscarProductoNombre;

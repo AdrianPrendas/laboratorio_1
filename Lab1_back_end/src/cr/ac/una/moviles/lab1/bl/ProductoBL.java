@@ -36,6 +36,11 @@ public class ProductoBL extends BaseBL implements IBaseBL<Producto,Integer>{
         return new ArrayList(this.getDao(Producto.class.getName()).read(p));
     }
     
+    public Producto findByKey(Integer key){
+        Producto p = new Producto(key,"",0,false,"");
+        return (Producto)new ArrayList(this.getDao(Producto.class.getName()).read(p)).get(0);
+    }
+    
     
     @Override
     public List<Producto> findByType(String str) {
